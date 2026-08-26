@@ -1,187 +1,318 @@
-% DATA IN BRIEF - Unofficial Article Template
-% By Hoang-Long Cao, VUB & CTU
-% hoanglongcao@gmail.com
-%
-% Based on Elsevier’s official Word template: https://www.elsevier.com/dib-template
-% This is unofficial and intended for use in Overleaf with LuaLaTeX or XeLaTeX.
-%
-% Submission Workflow:
-% 1. Comment out \usepackage{lineno} and other \linenumbers commands.
-% 2. Compile and download the PDF.
-% 3. Convert the PDF to Word
-% 4. Enable line numbering in Word 
-% 5. Correct any formatting issues
+% DATA IN BRIEF - Data Article manuscript
+% Prepared from Data Article Template V.18 (April 2024)
+% Compile with XeLaTeX or LuaLaTeX.
+% Working branch: data-in-brief-dataset-manuscript
 
-\documentclass[a4paper, 12pt]{article}
+\documentclass[a4paper,12pt]{article}
 \usepackage{graphicx}
-\usepackage[colorlinks = true,
-linkcolor = blue,
-urlcolor = blue,
-citecolor = blue,
-anchorcolor = blue]{hyperref}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,anchorcolor=blue]{hyperref}
 \usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{amsmath}
 \usepackage{fancyhdr}
-\usepackage[headheight=1.4cm, margin=1in]{geometry}
-\renewcommand{\headrulewidth}{1pt}
+\usepackage[headheight=1.4cm,margin=1in]{geometry}
+\renewcommand{\headrulewidth}{0pt}
 \fancyhead[L]{\includegraphics[width=\textwidth]{logo.png}}
 \fancyhead[R]{}
-\renewcommand{\headrulewidth}{0pt} 
 \pagestyle{fancy}
 
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xltabular}
+\usepackage{url}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
 \usepackage{fontspec}
-% Set the main font to Calibri
-\setmainfont{Carlito}
+\setmainfont{Arial}
 \usepackage[numbers,square]{natbib}
 \bibliographystyle{elsarticle-num}
 \usepackage{parskip}
 \setlength{\parindent}{0pt}
+\usepackage{lineno}
 
 \tolerance=1
 \emergencystretch=\maxdimen
 \hyphenpenalty=10000
 \hbadness=10000
 
-% For PDF to Word: Comment out this line
-\usepackage{lineno}
-
 \begin{document}
 
-% Start line numbering
-% For PDF to Word: Comment out this line
-\renewcommand{\linenumberfont}{\normalfont\normalsize}
+\renewcommand{\linenumberfont}{\normalfont\scriptsize}
 \linenumbers
 
-
 \begin{flushright}
-\textbf{DATA ARTICLE TEMPLATE V.18 (APRIL 2024) }
+\textbf{DATA ARTICLE TEMPLATE V.18 (APRIL 2024)}
 \end{flushright}
-
-% AUTHOR INSTRUCTIONS
-% • Please check that your dataset meets the criteria on our webpage What Data are Suitable for Data in Brief. Please also see our FAQ page, which introduces further Data in Brief article types.
-% • Please fill in the template below.  Note that we can only consider data articles submitted using this template. For help with preparing your manuscript, please also see our webinar on how to fill in the template, our Guide for Authors, and our step-by-step video guide on how to submit to Data in Brief. 
-% • Please be advised that parts of this template are locked for editing. The parts that are editable are highlighted in yellow. Please do not edit the template other than the section highlighted in yellow.
-% • Brief instructions are in blue italics. Additional instructions appear in comment boxes to the right of the main text.
-% • It is mandatory to publicly share your research data in a repository referred to in your Data in Brief article.
-% • Before submitting your data article, please delete this page as well as all instructional text in blue italics and all comment boxes in this template.
-% • For inspiration on how to complete the Data in Brief template, please find exemplary articles here.
-
-% In case you still have questions, please email our Scientific Editors at: dib-me@elsevier.com.
-
-% Please click here for a survey to share your anonymous feedback on this template and how it might be improved.
-
 
 \section*{ARTICLE INFORMATION}
 
 \subsection*{Article title}
-
-The article title must include the word ‘data’ or ‘dataset’. 
+A Curated Dataset of Human GPCR Sequences, AlphaFold-Predicted Structures, Transmembrane Topologies, and Reference Alignments for Structural Bioinformatics
 
 \subsection*{Authors}
-
-Please list all authors (first name(s) - last name) and mark the corresponding author with *.
+Cristian Zambrano-Vega$^{1}$, Joel Cede\~no-Mu\~noz$^{2}$, Antonio J. Nebro$^{3,4,*}$
 
 \subsection*{Affiliations}
+$^{1}$ Faculty of Computer Science and Digital Design, State Technical University of Quevedo, Quevedo 120503, Ecuador.
 
-Please include the full postal address of each author’s institution.
+$^{2}$ Faculty of Animal and Biology Sciences, State Technical University of Quevedo, Quevedo 120503, Ecuador.
 
-\subsection*{Corresponding author’s email address and Twitter handle}
+$^{3}$ ITIS Software, Edificio de Investigaci\'on Ada Byron, University of M\'alaga, 29071 M\'alaga, Spain.
 
-Please use your institutional email address. If you have one, please also add your Twitter handle here.
+$^{4}$ Departamento de Lenguajes y Ciencias de la Computaci\'on, University of M\'alaga, 29071 M\'alaga, Spain.
+
+\subsection*{Corresponding author's email address and Twitter handle}
+* Corresponding author: Antonio J. Nebro, \href{mailto:ajnebro@uma.es}{ajnebro@uma.es}.
 
 \subsection*{Keywords}
-
-Include 4-8 keywords, separated by semi-colons. Please do not repeat words used in your title.
+structural bioinformatics; membrane proteins; reproducible benchmarking; Predicted Aligned Error; FAIR principles; residue correspondence
 
 \subsection*{Abstract}
-
-The abstract should be 100 to 500 words long and describe the data collection process, the dataset, and its reuse potential. It should not provide conclusions or interpretations.
-
+This data article describes a curated benchmark resource for sequence- and structure-aware analysis of human G protein-coupled receptors (GPCRs). The collection contains 284 full-length human GPCR sequences organized into nine biologically defined classes or class-A subclasses, together with seven reduced 19-protein subsets (133 sequence instances) prepared for standardized structure-alignment workflows. Sequence records were retrieved programmatically from GPCRdb and are accompanied by transmembrane-topology annotations, GPCRdb reference alignments, and dataset-level metadata. Structure-associated data include AlphaFold Protein Structure Database models in PDB format, Predicted Aligned Error (PAE) matrices in JSON format, C$\alpha$ residue-distance matrices, residue-index maps, and PAE-derived confidence-weight matrices. The repository also stores precomputed multiple-sequence and multiple-structure alignment outputs, per-tool execution artifacts, consolidated baseline tables, and Python/shell scripts used for acquisition, transformation, metric preparation, and workflow execution. Data are organized by a consistent dataset naming scheme that links sequences, structures, derived matrices, reference alignments, and software outputs. The resource is intended for reproducible benchmarking of transmembrane-protein alignment methods, development of structure-aware scoring functions, independent reanalysis of GPCR residue correspondences, and construction of alternative benchmark protocols. The public GitHub repository and the exact source commit used for this article are reported in the Specifications Table.
 
 \section*{SPECIFICATIONS TABLE}
 
-\begin{longtable}{| p{4cm} | p{11cm} |}
-    \hline
-    \textbf{Subject} & Please select a subject area from the list available at \href{https://www.elsevier.com/__data/assets/excel_doc/0012/736977/DIB-categories.xlsx}{DIB categories}. \\ \hline
-    \textbf{Specific subject area} & Briefly describe the specific subject area. Max 150 characters (without spaces). \\ \hline
-    \textbf{Type of data} & Please list your type(s) of data and data formats. Delete any description from the lists that does not apply. If your data type is not featured, please manually add it. \newline
-    \textit{Table, Image, Chart, Graph, Figure etc.} \newline
-    \textit{Raw, Analyzed, Filtered, Processed etc.} \\ \hline
-    \textbf{Data collection} & Briefly describe how the data were collected. Please provide information on instruments you used (e.g., microscope, mass spectrometry, specific hardware or software etc., including relevant make/model details) as well as on methods used for collecting data or inclusion/exclusion criteria. You may also describe how the data were normalized. In case of questionnaires, please briefly describe the sources used to derive the question items. Max 600 characters (without spaces). \\ \hline
-    \textbf{Data source location} & Please mention where the data were collected (e.g., geographical coordinates) or where the data are stored (typically your affiliation). \\ \hline
-    \textbf{Data accessibility} & Please note: All raw data referred to in this article must be made publicly available in a data repository prior to publication. Please indicate here where your data are hosted (the URL must be working at the time of submission and editors and reviewers must have anonymous access to the repository): \newline
-    Repository name: ... \newline
-    Data identification number: (or DOI or persistent identifier) \newline
-    Direct URL to data: ... \newline
-    Instructions for accessing these data: ... \\ \hline
-    \textbf{Related research article} & If your manuscript supports a related research article, please cite this article here. If your manuscript is not related to a research article, please state ‘none’. You should list only one article here. Please upload a copy of your related research article to your submission. \\ \hline
+\begin{longtable}{|p{4cm}|p{11cm}|}
+\hline
+\textbf{Subject} & Bioinformatics \\ \hline
+\textbf{Specific subject area} & Structural bioinformatics and sequence/structure benchmarking of human G protein-coupled receptors. \\ \hline
+\textbf{Type of data} & Raw and curated protein-sequence data (FASTA); topology annotations (three-line text and GFF3); predicted protein structures (PDB); AlphaFold PAE data (JSON); processed residue-distance, residue-index and confidence-weight matrices (CSV); reference and precomputed alignments (FASTA/MSF); execution logs and result tables (CSV/TSV/text); Python and shell scripts. \\ \hline
+\textbf{Data collection} & Human GPCR sequences were queried from the GPCRdb REST service using fixed family/subfamily identifiers. AlphaFold database model-v6 PDB files and PAE JSON files were retrieved using UniProt accessions. C$\alpha$ coordinates were parsed with Biopython to generate residue-distance matrices and index maps. PAE matrices were transformed into confidence weights. Reference alignments and tool outputs were stored by dataset and method. \\ \hline
+\textbf{Data source location} & Public biological data were acquired from GPCRdb and the AlphaFold Protein Structure Database. Dataset curation and derived-data generation were performed at the State Technical University of Quevedo, Quevedo, Ecuador, with methodological collaboration from the University of M\'alaga, M\'alaga, Spain. \\ \hline
+\textbf{Data accessibility} & Repository name: GitHub -- \texttt{Dataset\_Structural\_GPCRs}. \newline
+Data identification number: Git commit \texttt{3e339cae97116fa04f98769b7324c3443334bc97}. \newline
+Direct URL to data: \url{https://github.com/JOELITO07/Dataset_Structural_GPCRs}. \newline
+Instructions for accessing these data: the repository is public and can be browsed online, downloaded as an archive, or cloned with Git; no authentication is required. \\ \hline
+\textbf{Related research article} & J. Cede\~no-Mu\~noz, C. Zambrano-Vega, A.J. Nebro, ``Multiobjective Optimization Applied to the Structure-Based Sequence Alignment of Transmembrane Proteins with AlphaFold2-Guided Constraints,'' manuscript prepared for co-submission to \textit{Computational Biology and Chemistry} \cite{cedeno2026structalign}. \\ \hline
 \end{longtable}
-\setcounter{table}{0} % Do not delete this line
+\setcounter{table}{0}
 
 \section*{VALUE OF THE DATA}
-This section states why these data are of value to the scientific community. Please \textbf{provide between 3 and 6 bullet points} and answer at least the questions below (delete the questions afterwards). Each bullet point should be a maximum of 150 words long, and should not include conclusions or inferences:
 \begin{itemize}
-    \item Why are these data valuable?
-    \item How can these data be reused by other researchers?
-    \item ...
+    \item The dataset links full-length human GPCR sequences to topology annotations, AlphaFold structures, PAE information, residue-distance matrices, reference alignments and precomputed alignment outputs under a common identifier scheme. This reduces the data-integration work required to construct reproducible benchmarks for transmembrane-protein alignment.
+
+    \item The nine full GPCR groups span class-A aminergic, peptide, protein and lipid-related subclasses as well as classes B1, B2, C, F and T2. The collection therefore provides groups with substantially different sequence counts and protein-length distributions, including long adhesion GPCRs, while retaining a common seven-transmembrane receptor context.
+
+    \item The seven reduced 19-protein subsets can be reused when researchers need fixed-size structural benchmarks or when an alignment workflow has practical restrictions on the number or size of input structures. Because the selected protein identifiers are explicitly stored, these subsets can be reproduced without resampling.
+
+    \item The raw AlphaFold PAE matrices, C$\alpha$ distance matrices, residue-index maps and PAE-derived weights can be reused independently of the alignment outputs. They support development or validation of alternative structure-aware objectives, confidence-aware scoring schemes, contact/distance analyses, and residue-correspondence metrics.
+
+    \item The repository includes reference alignments, precomputed outputs from multiple sequence- and structure-based aligners, execution artifacts, and workflow scripts. Researchers can compare a new method with archived baselines, recompute derived quantities, audit the data-preparation steps, or substitute updated structures and aligners while preserving the same benchmark organization.
 \end{itemize}
 
 \section*{BACKGROUND}
-Please describe your original motivation and context behind compiling this dataset. For example, briefly include information on the theoretical or methodological background against which you generated the data. Do not make concluding, interpretive, or otherwise inferential statements about the dataset. In case your data article is related to an original research article, please briefly describe how the data article adds value to the published article (Max. 200 words).
+G protein-coupled receptors (GPCRs) form a structurally related family of membrane receptors characterized by a conserved transmembrane helical architecture despite substantial sequence diversity. Structure-based analysis can therefore complement conventional sequence-only alignment when residue correspondence is difficult to infer from sequence identity alone \cite{cvicek2016gross}. GPCRdb provides curated receptor classifications, sequences and alignment resources \cite{pandyszekeres2023gpcrdb}, whereas AlphaFold and the AlphaFold Protein Structure Database provide broad access to predicted three-dimensional protein structures and confidence information \cite{jumper2021alphafold,varadi2024afdb}.
+
+The present dataset was assembled to make the inputs, structural derivatives, reference alignments and software outputs used in a structure-aware GPCR alignment study directly reusable. It accompanies the related manuscript \cite{cedeno2026structalign} and extends the data resources used in the earlier topology-aware TMP-M2Align work \cite{cedeno2025tmpm2align}. This article documents the dataset itself, its provenance, file organization and generation procedures; it does not report comparative conclusions about alignment methods.
 
 \section*{DATA DESCRIPTION}
-This section describes your dataset. Refer to all the data folders, subfolders, and files in the repository individually, irrespective of whether they relate to raw or analyzed data, and make sure that the reader can follow the structure of your dataset.
 
-Please use visual aids (such as tables, graphs, or figures with captions) to familiarize the reader with your dataset, but \textbf{do not offer background, interpretations, or conclusions}.
+\subsection*{Dataset composition}
+The full collection contains 284 human GPCR sequences divided into nine groups. The group labels used throughout the repository are shown in Table~\ref{tab:composition}. Sequence counts and minimum/maximum sequence lengths are taken from \texttt{GPCRdb/sequences/dataset\_summary.csv}.
+
+\begin{longtable}{p{3.0cm}p{5.1cm}rrr}
+\caption{Composition of the full human GPCR sequence collection.}\label{tab:composition}\\
+\toprule
+\textbf{Repository dataset} & \textbf{GPCR group} & \textbf{N} & \textbf{Min. aa} & \textbf{Max. aa}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Repository dataset} & \textbf{GPCR group} & \textbf{N} & \textbf{Min. aa} & \textbf{Max. aa}\\
+\midrule
+\endhead
+\texttt{classA\_001} & Class A aminergic (A$\alpha$) & 36 & 339 & 590\\
+\texttt{classA\_002} & Class A peptide (A$\beta$) & 76 & 290 & 757\\
+\texttt{classA\_003} & Class A protein (A$\gamma$) & 30 & 333 & 764\\
+\texttt{classA\_004} & Class A lipid-related (A$\delta$) & 36 & 300 & 488\\
+\texttt{classB1} & Class B1 (Secretin) & 15 & 411 & 593\\
+\texttt{classB2} & Class B2 (Adhesion) & 33 & 457 & 6306\\
+\texttt{classC} & Class C (Glutamate) & 22 & 345 & 2367\\
+\texttt{classF} & Class F (Frizzled) & 11 & 537 & 787\\
+\texttt{classT2} & Class T2 (Taste 2) & 25 & 291 & 338\\
+\midrule
+\textbf{Total} & & \textbf{284} & &\\
+\bottomrule
+\end{longtable}
+
+Seven reduced datasets contain exactly 19 proteins each: \texttt{classA\_001\_19}, \texttt{classA\_002\_19}, \texttt{classA\_003\_19}, \texttt{classA\_004\_19}, \texttt{classB2\_19}, \texttt{classC\_19}, and \texttt{classT2\_19}. Together they comprise 133 sequence instances. The exact receptor identifiers are stored in \texttt{GPCRdb/List19Proteins.txt}. Class B1 and class F contain 15 and 11 proteins, respectively, so separate 19-protein variants are not required. The reduced datasets are subsets of the corresponding full datasets and are not independent biological cohorts.
+
+\subsection*{Repository organization}
+Table~\ref{tab:files} maps the current repository directories to their contents. Dataset names are reused across folders so that, for example, \texttt{classA\_002} identifies the corresponding FASTA sequences, topology data, AlphaFold structures, matrices, reference alignments and precomputed outputs.
+
+\begin{xltabular}{\textwidth}{
+		@{}
+		>{\raggedright\arraybackslash}p{0.35\textwidth}
+		Y
+		@{}
+	}
+	\caption{Principal files and directories in the public data repository.}
+	\label{tab:files}\\
+	
+	\toprule
+	\textbf{Path} & \textbf{Contents}\\
+	\midrule
+	\endfirsthead
+	
+	\multicolumn{2}{c}{%
+		\tablename\ \thetable\ -- continued from previous page
+	}\\
+	\toprule
+	\textbf{Path} & \textbf{Contents}\\
+	\midrule
+	\endhead
+	
+	\midrule
+	\multicolumn{2}{r}{Continued on next page}\\
+	\endfoot
+	
+	\bottomrule
+	\endlastfoot
+	
+	\path{GPCRdb/List19Proteins.txt} &
+	Explicit receptor identifiers used in the seven reduced 19-protein subsets.\\
+	
+	\path{GPCRdb/sequences/dataset_summary.csv} &
+	Dataset-level counts and minimum/maximum sequence lengths.\\
+	
+	\path{GPCRdb/sequences/fasta/} &
+	Full-length protein sequences in FASTA format for full and reduced datasets.\\
+	
+	\path{GPCRdb/sequences/gff3/} &
+	Sequence-feature annotations stored in GFF3 format.\\
+	
+	\path{GPCRdb/sequences/tmregions/} &
+	Predicted topology files in three-line format; each record contains an
+	identifier, amino-acid sequence and per-residue topology-state string.\\
+	
+	\path{GPCRdb/alphafold_pdb/} &
+	AlphaFold Protein Structure Database coordinate models in PDB format,
+	organized by dataset.\\
+	
+	\path{GPCRdb/alphafold_json/} &
+	AlphaFold PAE records in JSON format, including
+	\path{predicted_aligned_error} matrices.\\
+	
+	\path{GPCRdb/distances/} &
+	Per-protein C$\alpha$ distance matrices (\path{*_D.csv}) and
+	residue-index mappings (\path{*_idx.csv}), organized by dataset.\\
+	
+	\path{GPCRdb/weights/} &
+	PAE-derived confidence-weight matrices (\path{*_W.csv}) used by
+	structure-aware scoring workflows.\\
+	
+	\path{GPCRdb/reference_alignments/} &
+	GPCRdb-derived reference multiple alignments in FASTA and MSF-compatible
+	representations, including reduced subsets.\\
+	
+	\path{GPCRdb/precomputed/} &
+	Per-dataset precomputed alignments and tabular baseline summaries.
+	The global \path{baselines.csv} records dataset, method, objective fields,
+	alignment path, status and message.\\
+	
+	\path{Tests/caretta/} &
+	Caretta execution artifacts and dataset-level outputs.\\
+	
+	\path{Tests/foldmason/} &
+	FoldMason execution artifacts and dataset-level outputs.\\
+	
+	\path{Tests/mtmalign/} &
+	mTM-align execution artifacts and dataset-level outputs.\\
+	
+	\path{Tests/mustang/} &
+	MUSTANG execution artifacts and dataset-level outputs.\\
+	
+	\path{Tests/tm_m2strucalign/} &
+	Archived outputs from TM-M2StructAlign experimental runs used in
+	downstream data preparation.\\
+	
+	\path{Tests/usalign/} &
+	US-align execution artifacts and dataset-level outputs.\\
+	
+	\path{scripts/} &
+	Python and shell scripts for sequence/structure acquisition, matrix
+	generation, subset construction, format conversion, metric preparation
+	and aligner execution.\\
+	
+\end{xltabular}
+
+\subsection*{Structural and confidence-derived files}
+For each available structure, \texttt{*\_D.csv} stores a square residue-by-residue C$\alpha$ Euclidean distance matrix. The associated \texttt{*\_idx.csv} file maps each matrix row/column to the residue sequence number read from the PDB file. The distance-generation script clips values above 50~\AA{} to 50~\AA{} in the stored matrix. PAE JSON files contain AlphaFold predicted aligned error values, and \texttt{*\_W.csv} files store the corresponding exponentially transformed confidence weights described below.
+
+\subsection*{Reference and precomputed alignments}
+Reference alignments are retained in \texttt{GPCRdb/reference\_alignments/} and are named using the same dataset identifiers as the sequence files. The \texttt{GPCRdb/precomputed/} directory stores method-specific FASTA alignments and baseline tables. Archived outputs include sequence-based and structure-based methods, such as ClustalW, Kalign, MAFFT, MUSCLE5, T-Coffee, TM-Aligner, Caretta, FoldMason, mTM-align, MUSTANG and US-align, depending on dataset availability. The presence of an archived output does not imply that it was included in every comparison in the related research article. The \texttt{status} and \texttt{message} fields in baseline tables should be consulted when reusing automated outputs.
 
 \section*{EXPERIMENTAL DESIGN, MATERIALS AND METHODS}
-This section describes how you acquired the data. Provide a complete description of the experimental design and methods used to acquire these data. For example, include all code (files) and software used for data analysis or data generation, and describe tools, instruments, and experimental conditions.
 
-It is important that this section is as comprehensive as possible. There is no character limit, and you may use illustrative figures or tables; however, please do not offer background, interpretations, or conclusions.
+\subsection*{1. Definition of GPCR groups and sequence acquisition}
+The primary sequence collection was restricted to \textit{Homo sapiens}. The script \texttt{scripts/downloadsequences.py} queries the GPCRdb REST endpoint \url{https://gpcrdb.org/services/proteinfamily/proteins} using the class/subclass slugs \texttt{001\_001}, \texttt{001\_002}, \texttt{001\_003}, \texttt{001\_004}, \texttt{002}, \texttt{003}, \texttt{004}, \texttt{006}, and \texttt{009}. For every returned receptor, the script writes the GPCRdb entry name and amino-acid sequence in FASTA format and records the number of sequences and minimum/maximum sequence length in \texttt{dataset\_summary.csv}. GPCRdb nomenclature and receptor-family resources are described by P\'andy-Szekeres et al. \cite{pandyszekeres2023gpcrdb}.
+
+The repository-level names \texttt{classA\_001} through \texttt{classT2} are used consistently for all subsequent data products. These names provide stable links among sequence, topology, structure, matrix, reference-alignment and software-output folders.
+
+\subsection*{2. Construction of the reduced 19-protein subsets}
+The reduced benchmark was generated as a deterministic subset rather than by repeated random sampling. The selected receptor names for the seven groups with at least 19 members are stored verbatim in \texttt{GPCRdb/List19Proteins.txt}. Corresponding sequence, structure, matrix and alignment folders use the suffix \texttt{\_19}. This representation was introduced to standardize input size for structure-alignment workflows and to support software with practical input-size constraints. The mTM-align family of algorithms is one of the structural-alignment methods represented in the archived benchmark outputs \cite{dong2018mtmalign}. Groups containing fewer than 19 proteins in the full collection (B1 and F) are used directly rather than duplicated under an artificial \texttt{\_19} label.
+
+\subsection*{3. Transmembrane-topology annotations}
+Per-residue topology annotations are stored in \texttt{GPCRdb/sequences/tmregions/} as \texttt{*\_predicted\_topologies.3line}. Each entry contains a FASTA-like identifier line, the full protein sequence, and a same-length topology string. In these files, \texttt{M} identifies membrane-spanning residues, whereas \texttt{I} and \texttt{O} encode residues on the two non-membrane sides of the topology. The topology-prediction workflow used DeepTMHMM, a deep-learning method for alpha- and beta-transmembrane protein topology prediction \cite{hallgren2022deeptmhmm}. Full and reduced topology files preserve the same receptor naming used in the FASTA collections.
+
+\subsection*{4. AlphaFold structure and PAE acquisition}
+Predicted structures and confidence data were acquired from the AlphaFold Protein Structure Database, which distributes AlphaFold predictions at proteome scale \cite{jumper2021alphafold,varadi2024afdb}. The acquisition script \texttt{scripts/download.py} maps each receptor to its UniProt accession and requests AlphaFold database model version~6 using the file patterns
+
+\begin{verbatim}
+AF-{UniProt_ID}-F1-model_v6.pdb
+AF-{UniProt_ID}-F1-predicted_aligned_error_v6.json
+\end{verbatim}
+
+The PDB file is stored under \texttt{GPCRdb/alphafold\_pdb/} and the predicted-aligned-error JSON file under \texttt{GPCRdb/alphafold\_json/}. JSON records used in this dataset contain a \texttt{predicted\_aligned\_error} matrix. These PAE matrices are retained as raw confidence-associated data so that alternative weighting or filtering functions can be applied without regenerating structural predictions.
+
+\subsection*{5. C$\alpha$ distance matrices and residue-index maps}
+Structural distance files were generated with \texttt{scripts/distanceandindex.py}, which uses NumPy and Biopython's \texttt{Bio.PDB.PDBParser} \cite{cock2009biopython}. For each PDB file, the first model is read. Chain A is used when present; otherwise, the first available chain is selected. Hetero residues and residues lacking a C$\alpha$ atom are skipped. If $\mathbf{x}_i$ and $\mathbf{x}_j$ are the Cartesian C$\alpha$ coordinates of residues $i$ and $j$, the stored distance is
+
+\begin{equation}
+D_{ij}=\min\left(\lVert \mathbf{x}_i-\mathbf{x}_j \rVert_2, 50\,\text{\AA}\right).
+\end{equation}
+
+Matrices are written as decimal CSV files (\texttt{*\_D.csv}). A companion integer file (\texttt{*\_idx.csv}) stores the PDB residue number for each matrix row/column, allowing matrix indices to be reconciled with residue numbering even when a coordinate file contains missing or excluded records.
+
+\subsection*{6. PAE-derived confidence weights}
+The script \texttt{scripts/generar.py} reads the PAE array from each AlphaFold JSON record and transforms it into a confidence-weight matrix using
+
+\begin{equation}
+W_{ij}=\exp\left(-\frac{\mathrm{PAE}_{ij}}{\tau}\right), \qquad \tau=10.0.
+\end{equation}
+
+The generated matrices are stored as \texttt{*\_W.csv} in \texttt{GPCRdb/weights/}. The source PAE data are preserved separately, so users can recompute $W$ with a different $\tau$ or use the PAE values directly.
+
+\subsection*{7. Reference alignments}
+GPCRdb alignment services were used to retain family-specific reference residue correspondences. Reduced references were generated by \texttt{scripts/downloadmsareferences\_19.py}, which requests \url{https://gpcrdb.org/services/alignment/protein/{protein_list}/} for the explicit list of receptors in each 19-protein subset. Returned aligned sequences are written in FASTA format. The repository also contains MSF-compatible versions used by scoring utilities. Reference files are named after the corresponding dataset, enabling direct pairing with predicted alignments.
+
+\subsection*{8. Precomputed alignment outputs and structural-alignment workflows}
+The dataset retains alignment files generated during benchmark preparation so that users need not rerun every third-party tool before inspecting or extending the benchmark. Per-dataset FASTA files are located in \texttt{GPCRdb/precomputed/}; a global \texttt{baselines.csv} stores the fields \texttt{dataset}, \texttt{method}, \texttt{objective\_1}, \texttt{objective\_2}, \texttt{fasta}, \texttt{status}, and \texttt{message}. These tabular values are provided as machine-readable experiment records rather than as conclusions of this data article.
+
+Structure-alignment outputs and logs are additionally grouped under \texttt{Tests/}. The repository provides dedicated workflows for Caretta \cite{akdel2020caretta}, MUSTANG \cite{konagurthu2006mustang}, mTM-align \cite{dong2018mtmalign}, FoldMason \cite{gilchrist2026foldmason}, and US-align \cite{zhang2022usalign}. Shell scripts in \texttt{scripts/} define the batch execution and data-preparation steps. FoldMason's use of local distance-difference information is related to the lDDT framework used broadly for superposition-free structural assessment \cite{mariani2013lddt}. Users should rely on the stored status/log information to identify successful, partial, or unavailable executions for a specific tool/dataset combination.
+
+\subsection*{9. Reproducibility and provenance}
+The acquisition and transformation pipeline is retained with the data. Key files include \texttt{downloadsequences.py}, \texttt{download.py}, \texttt{downloadmsareferences\_19.py}, \texttt{generar.py}, \texttt{distanceandindex.py}, conversion and metric-preparation scripts, and shell workflows for the structural aligners. The exact public repository state used to prepare this article is identified by commit \texttt{3e339cae97116fa04f98769b7324c3443334bc97}. This commit-level identifier allows future repository changes to be distinguished from the data snapshot described here. The repository README specifies CC BY 4.0 for the compiled/derived dataset while retaining the attribution and licensing conditions of the upstream data sources. The organization is intended to facilitate findability, accessibility, interoperability and reuse in line with FAIR data principles \cite{wilkinson2016fair}.
 
 \section*{LIMITATIONS}
-Describe any limitations related to the data described in this article. These could be any problems you faced during data collection or curation, limited quality or size of dataset, data biases, etc., but \textbf{should not include limitations of analysis conducted or interpretation} (Max. 200 words).
-
-If there are none, please write ‘None’ or ‘Not applicable’.
+The dataset is a targeted benchmark rather than a complete census of all human GPCRs: it contains 284 receptors from the nine selected groups/subclasses used in the associated alignment study. The seven reduced 19-protein datasets are deterministic subsets of the full groups and must not be treated as independent biological samples. Structural files depend on the AlphaFold database model version used during acquisition; future database releases may change coordinates or confidence values. Predicted structures, especially for very long receptors such as adhesion GPCRs, can contain regions of heterogeneous confidence, and PAE-derived weights inherit this uncertainty as well as the fixed $\tau=10$ transformation used here. Precomputed aligner outputs are heterogeneous because third-party methods differ in accepted input sizes, formats and failure modes; absent or failed executions should not be interpreted as numerical zeroes, and the stored status/log fields should be checked. The GitHub commit provides an exact version identifier but is not a repository DOI.
 
 \section*{ETHICS STATEMENT}
-Data in \href{https://www.elsevier.com/journals/data-in-brief/2352-3409/guide-for-authors}{Brief’s Guide for Authors} contains detailed information on the ethical guidelines with which all authors must comply. In addition, we ask you to complete the relevant statement(s) below. Please delete those which are not relevant for your data.
-
-\textbf{If your work involved human subjects}, please include a statement here confirming that the relevant informed consent was obtained from those subjects, if the research was carried out in accordance with the Declaration of Helsinki, and if it includes the \textbf{Ethical committee approval and the protocol number}. A copy of the consent form (in English) can be submitted either in a data repository or under the section ‘Consent form’ while submitting the manuscript to the system.
-
-\textbf{If your work involved animal experiments}, please include a statement here confirming that those experiments complied with the \href{https://www.nc3rs.org.uk/arrive-guidelines}{ARRIVE} guidelines and were carried out in accordance with the U.K. Animals (Scientific Procedures) Act, 1986 and associated guidelines; \href{http://ec.europa.eu/environment/chemicals/lab_animals/legislation_en.htm}{EU Directive 2010/63/EU for animal experiments}; or the National Institutes of Health guide for the care and use of laboratory animals (NIH Publications No. 8023, revised 1978). Note, the sex of the animals must be indicated, and, where appropriate, the influence (or association) of sex on the results of the study.
-
-\textbf{If your work involved data collected from social media platforms}, please include a statement here confirming that a) informed consent was obtained from participants or that participant data has been fully anonymized, and b) the platform(s)’ data redistribution policies were complied with.
-
-\textbf{If none of the above}, please include a statement confirming that the authors have read and follow the \href{https://www.elsevier.com/authors/journal-authors/policies-and-ethics}{ethical requirements} for publication in Data in Brief and confirming that the current work does not involve human subjects, animal experiments, or any data collected from social media platforms.
+The authors have read and follow the ethical requirements for publication in \textit{Data in Brief}. The current work does not involve human participants, human biological samples, animal experiments, or data collected from social media platforms. It uses publicly available protein sequence, annotation and predicted-structure records together with computationally derived data.
 
 \section*{CRediT AUTHOR STATEMENT}
-Please outline the contributions of each co-author, using the \href{https://www.elsevier.com/authors/journal-authors/policies-and-ethics/credit-author-statement}{categories listed on this webpage}.
+\textbf{Cristian Zambrano-Vega:} Conceptualization, Methodology, Software,  Supervision, Project administration, Validation, Writing -- review \& editing. \textbf{Joel Cede\~no-Mu\~noz:} Conceptualization, Validation, Formal analysis, Investigation, Data curation, Visualization, Writing -- original draft.  \textbf{Antonio J. Nebro:} Methodology, Supervision, Validation, Writing -- review \& editing.
 
 \section*{ACKNOWLEDGEMENTS}
-In this section, mention all contributors who do not meet the criteria for authorship. 
-In addition, please list any funding sources in this section. List funding sources in the standard way to facilitate compliance to funder's requirements.
+The authors acknowledge GPCRdb, UniProt-linked records, the AlphaFold Protein Structure Database, and the developers of the alignment software represented in the repository for making their scientific resources available to the community.
 
-If no funding has been provided for the research, please include the following sentence:
 This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors.
 
 \section*{DECLARATION OF COMPETING INTERESTS}
-Please choose one appropriate statement from below and delete the one that does not apply (if applicable, please specify the nature of your competing interests). 
-\begin{itemize}
-    \item The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
-    \item The authors declare the following financial interests/personal relationships which may be considered as potential competing interests:
-\end{itemize}
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
 
-\section*{REFERENCES}
-In this section, please provide a numbered list of references. References are limited to \textbf{a maximum of 20} and irrelevant self-citation is not allowed.  
 
-Please format all in-text citations by number(s) in square brackets in line with the text. The actual authors can be referred to, but the reference number(s) must always be given.
-
-\textbf{IMPORTANT: If your data article supports an original research article, please cite the associated article here; ideally, it should be the first citation. }
-
-\textbf{Please also make sure to cite your dataset in the data repository.}
-
-For example, this is a paper published in Data in Brief \cite{al2020dataset}.
-\renewcommand{\refname}{REFERENCES} 
+\renewcommand{\refname}{REFERENCES}
 \bibliography{references-example}
 
 \end{document}
