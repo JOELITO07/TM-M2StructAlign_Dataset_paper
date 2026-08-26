@@ -16,8 +16,15 @@
 \fancyhead[R]{}
 \pagestyle{fancy}
 
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xltabular}
+\usepackage{url}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
 \usepackage{fontspec}
-\setmainfont{Carlito}
+\setmainfont{Arial}
 \usepackage[numbers,square]{natbib}
 \bibliographystyle{elsarticle-num}
 \usepackage{parskip}
@@ -41,22 +48,22 @@
 \section*{ARTICLE INFORMATION}
 
 \subsection*{Article title}
-TM-M2StructAlign dataset: Curated human GPCR sequences, AlphaFold2 structures, topology annotations, distance matrices and alignment outputs
+A Curated Dataset of Human GPCR Sequences, AlphaFold-Predicted Structures, Transmembrane Topologies, and Reference Alignments for Structural Bioinformatics
 
 \subsection*{Authors}
-Joel Cede\~no-Mu\~noz$^{1}$, Cristian Zambrano-Vega$^{2}$, Antonio J. Nebro$^{3,4,*}$
+Cristian Zambrano-Vega$^{1}$, Joel Cede\~no-Mu\~noz$^{2}$, Antonio J. Nebro$^{3,4,*}$
 
 \subsection*{Affiliations}
-$^{1}$ Faculty of Animal and Biology Sciences, State Technical University of Quevedo, Quevedo 120503, Ecuador.
+$^{1}$ Faculty of Computer Science and Digital Design, State Technical University of Quevedo, Quevedo 120503, Ecuador.
 
-$^{2}$ Faculty of Computer Science and Digital Design, State Technical University of Quevedo, Quevedo 120503, Ecuador.
+$^{2}$ Faculty of Animal and Biology Sciences, State Technical University of Quevedo, Quevedo 120503, Ecuador.
 
 $^{3}$ ITIS Software, Edificio de Investigaci\'on Ada Byron, University of M\'alaga, 29071 M\'alaga, Spain.
 
 $^{4}$ Departamento de Lenguajes y Ciencias de la Computaci\'on, University of M\'alaga, 29071 M\'alaga, Spain.
 
 \subsection*{Corresponding author's email address and Twitter handle}
-* Corresponding author: Antonio J. Nebro, \href{mailto:ajnebro@uma.es}{ajnebro@uma.es}. Twitter/X handle: not provided.
+* Corresponding author: Antonio J. Nebro, \href{mailto:ajnebro@uma.es}{ajnebro@uma.es}.
 
 \subsection*{Keywords}
 structural bioinformatics; membrane proteins; reproducible benchmarking; Predicted Aligned Error; FAIR principles; residue correspondence
@@ -133,36 +140,101 @@ Seven reduced datasets contain exactly 19 proteins each: \texttt{classA\_001\_19
 \subsection*{Repository organization}
 Table~\ref{tab:files} maps the current repository directories to their contents. Dataset names are reused across folders so that, for example, \texttt{classA\_002} identifies the corresponding FASTA sequences, topology data, AlphaFold structures, matrices, reference alignments and precomputed outputs.
 
-\begin{longtable}{p{5.5cm}p{9.1cm}}
-\caption{Principal files and directories in the public data repository.}\label{tab:files}\\
-\toprule
-\textbf{Path} & \textbf{Contents}\\
-\midrule
-\endfirsthead
-\toprule
-\textbf{Path} & \textbf{Contents}\\
-\midrule
-\endhead
-\texttt{GPCRdb/List19Proteins.txt} & Explicit receptor identifiers used in the seven reduced 19-protein subsets.\\
-\texttt{GPCRdb/sequences/dataset\_summary.csv} & Dataset-level counts and minimum/maximum sequence lengths.\\
-\texttt{GPCRdb/sequences/fasta/} & Full-length protein sequences in FASTA format for full and reduced datasets.\\
-\texttt{GPCRdb/sequences/gff3/} & Sequence-feature annotations stored in GFF3 format.\\
-\texttt{GPCRdb/sequences/tmregions/} & Predicted topology files in three-line format; each record contains an identifier, amino-acid sequence and per-residue topology-state string.\\
-\texttt{GPCRdb/alphafold\_pdb/} & AlphaFold Protein Structure Database coordinate models in PDB format, organized by dataset.\\
-\texttt{GPCRdb/alphafold\_json/} & AlphaFold PAE records in JSON format, including \texttt{predicted\_aligned\_error} matrices.\\
-\texttt{GPCRdb/distances/} & Per-protein C$\alpha$ distance matrices (\texttt{*\_D.csv}) and residue-index mappings (\texttt{*\_idx.csv}), organized by dataset.\\
-\texttt{GPCRdb/weights/} & PAE-derived confidence-weight matrices (\texttt{*\_W.csv}) used by structure-aware scoring workflows.\\
-\texttt{GPCRdb/reference\_alignments/} & GPCRdb-derived reference multiple alignments in FASTA and MSF-compatible representations, including reduced subsets.\\
-\texttt{GPCRdb/precomputed/} & Per-dataset precomputed alignments and tabular baseline summaries. The global \texttt{baselines.csv} records dataset, method, objective fields, alignment path, status and message.\\
-\texttt{Tests/caretta/} & Caretta execution artifacts and dataset-level outputs.\\
-\texttt{Tests/foldmason/} & FoldMason execution artifacts and dataset-level outputs.\\
-\texttt{Tests/mtmalign/} & mTM-align execution artifacts and dataset-level outputs.\\
-\texttt{Tests/mustang/} & MUSTANG execution artifacts and dataset-level outputs.\\
-\texttt{Tests/tm\_m2strucalign/} & Archived outputs from TM-M2StructAlign experimental runs used in downstream data preparation.\\
-\texttt{Tests/usalign/} & US-align execution artifacts and dataset-level outputs.\\
-\texttt{scripts/} & Python and shell scripts for sequence/structure acquisition, matrix generation, subset construction, format conversion, metric preparation and aligner execution.\\
-\bottomrule
-\end{longtable}
+\begin{xltabular}{\textwidth}{
+		@{}
+		>{\raggedright\arraybackslash}p{0.35\textwidth}
+		Y
+		@{}
+	}
+	\caption{Principal files and directories in the public data repository.}
+	\label{tab:files}\\
+	
+	\toprule
+	\textbf{Path} & \textbf{Contents}\\
+	\midrule
+	\endfirsthead
+	
+	\multicolumn{2}{c}{%
+		\tablename\ \thetable\ -- continued from previous page
+	}\\
+	\toprule
+	\textbf{Path} & \textbf{Contents}\\
+	\midrule
+	\endhead
+	
+	\midrule
+	\multicolumn{2}{r}{Continued on next page}\\
+	\endfoot
+	
+	\bottomrule
+	\endlastfoot
+	
+	\path{GPCRdb/List19Proteins.txt} &
+	Explicit receptor identifiers used in the seven reduced 19-protein subsets.\\
+	
+	\path{GPCRdb/sequences/dataset_summary.csv} &
+	Dataset-level counts and minimum/maximum sequence lengths.\\
+	
+	\path{GPCRdb/sequences/fasta/} &
+	Full-length protein sequences in FASTA format for full and reduced datasets.\\
+	
+	\path{GPCRdb/sequences/gff3/} &
+	Sequence-feature annotations stored in GFF3 format.\\
+	
+	\path{GPCRdb/sequences/tmregions/} &
+	Predicted topology files in three-line format; each record contains an
+	identifier, amino-acid sequence and per-residue topology-state string.\\
+	
+	\path{GPCRdb/alphafold_pdb/} &
+	AlphaFold Protein Structure Database coordinate models in PDB format,
+	organized by dataset.\\
+	
+	\path{GPCRdb/alphafold_json/} &
+	AlphaFold PAE records in JSON format, including
+	\path{predicted_aligned_error} matrices.\\
+	
+	\path{GPCRdb/distances/} &
+	Per-protein C$\alpha$ distance matrices (\path{*_D.csv}) and
+	residue-index mappings (\path{*_idx.csv}), organized by dataset.\\
+	
+	\path{GPCRdb/weights/} &
+	PAE-derived confidence-weight matrices (\path{*_W.csv}) used by
+	structure-aware scoring workflows.\\
+	
+	\path{GPCRdb/reference_alignments/} &
+	GPCRdb-derived reference multiple alignments in FASTA and MSF-compatible
+	representations, including reduced subsets.\\
+	
+	\path{GPCRdb/precomputed/} &
+	Per-dataset precomputed alignments and tabular baseline summaries.
+	The global \path{baselines.csv} records dataset, method, objective fields,
+	alignment path, status and message.\\
+	
+	\path{Tests/caretta/} &
+	Caretta execution artifacts and dataset-level outputs.\\
+	
+	\path{Tests/foldmason/} &
+	FoldMason execution artifacts and dataset-level outputs.\\
+	
+	\path{Tests/mtmalign/} &
+	mTM-align execution artifacts and dataset-level outputs.\\
+	
+	\path{Tests/mustang/} &
+	MUSTANG execution artifacts and dataset-level outputs.\\
+	
+	\path{Tests/tm_m2strucalign/} &
+	Archived outputs from TM-M2StructAlign experimental runs used in
+	downstream data preparation.\\
+	
+	\path{Tests/usalign/} &
+	US-align execution artifacts and dataset-level outputs.\\
+	
+	\path{scripts/} &
+	Python and shell scripts for sequence/structure acquisition, matrix
+	generation, subset construction, format conversion, metric preparation
+	and aligner execution.\\
+	
+\end{xltabular}
 
 \subsection*{Structural and confidence-derived files}
 For each available structure, \texttt{*\_D.csv} stores a square residue-by-residue C$\alpha$ Euclidean distance matrix. The associated \texttt{*\_idx.csv} file maps each matrix row/column to the residue sequence number read from the PDB file. The distance-generation script clips values above 50~\AA{} to 50~\AA{} in the stored matrix. PAE JSON files contain AlphaFold predicted aligned error values, and \texttt{*\_W.csv} files store the corresponding exponentially transformed confidence weights described below.
@@ -229,7 +301,7 @@ The dataset is a targeted benchmark rather than a complete census of all human G
 The authors have read and follow the ethical requirements for publication in \textit{Data in Brief}. The current work does not involve human participants, human biological samples, animal experiments, or data collected from social media platforms. It uses publicly available protein sequence, annotation and predicted-structure records together with computationally derived data.
 
 \section*{CRediT AUTHOR STATEMENT}
-\textbf{Joel Cede\~no-Mu\~noz:} Conceptualization, Methodology, Software, Validation, Formal analysis, Investigation, Data curation, Visualization, Writing -- original draft. \textbf{Cristian Zambrano-Vega:} Conceptualization, Supervision, Project administration, Validation, Writing -- review \& editing. \textbf{Antonio J. Nebro:} Methodology, Supervision, Validation, Writing -- review \& editing.
+\textbf{Cristian Zambrano-Vega:} Conceptualization, Methodology, Software,  Supervision, Project administration, Validation, Writing -- review \& editing. \textbf{Joel Cede\~no-Mu\~noz:} Conceptualization, Validation, Formal analysis, Investigation, Data curation, Visualization, Writing -- original draft.  \textbf{Antonio J. Nebro:} Methodology, Supervision, Validation, Writing -- review \& editing.
 
 \section*{ACKNOWLEDGEMENTS}
 The authors acknowledge GPCRdb, UniProt-linked records, the AlphaFold Protein Structure Database, and the developers of the alignment software represented in the repository for making their scientific resources available to the community.
@@ -239,10 +311,7 @@ This research did not receive any specific grant from funding agencies in the pu
 \section*{DECLARATION OF COMPETING INTERESTS}
 The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
 
-\section*{DECLARATION OF GENERATIVE AI AND AI-ASSISTED TECHNOLOGIES IN THE WRITING PROCESS}
-During the preparation of this work, the authors used ChatGPT (OpenAI) to assist with language editing and organization of the manuscript according to the journal template. The authors reviewed and edited the generated material and take full responsibility for the content of the publication. Generative AI tools were not used to generate, alter, or infer the research data described in this article.
 
-\section*{REFERENCES}
 \renewcommand{\refname}{REFERENCES}
 \bibliography{references-example}
 
