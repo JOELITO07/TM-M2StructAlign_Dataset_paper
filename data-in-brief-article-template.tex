@@ -1,6 +1,6 @@
 % DATA IN BRIEF - Data Article manuscript
 % Prepared from Data Article Template V.18 (April 2024)
-% Compile with XeLaTeX or LuaLaTeX.
+% Compile with pdfLaTeX, XeLaTeX, or LuaLaTeX.
 % Working branch: data-in-brief-dataset-manuscript
 
 \documentclass[a4paper,12pt]{article}
@@ -23,8 +23,16 @@
 
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 
-\usepackage{fontspec}
-\setmainfont{Arial}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage[scaled=0.95]{helvet}
+  \renewcommand{\familydefault}{\sfdefault}
+\else
+  \usepackage{fontspec}
+  \setmainfont{Arial}
+\fi
 \usepackage[numbers,square]{natbib}
 \bibliographystyle{elsarticle-num}
 \usepackage{parskip}
