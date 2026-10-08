@@ -54,22 +54,22 @@ A Curated Dataset of Human GPCR Sequences, AlphaFold-Predicted Structures, Trans
 Cristian Zambrano-Vega$^{1}$, Joel Cede\~no-Mu\~noz$^{2}$, Antonio J. Nebro$^{3,4,*}$
 
 \subsection*{Affiliations}
-$^{1}$ Faculty of Computer Science, State Technical University of Quevedo, Quevedo 120503, Ecuador.
+$^{1}$ Faculty of Computer Science, State Technical University of Quevedo, Av. Quito km 1.5 v\'ia a Santo Domingo, Quevedo 120503, Los R\'ios, Ecuador.
 
-$^{2}$ Faculty of Animal and Biology Sciences, State Technical University of Quevedo, Quevedo 120503, Ecuador.
+$^{2}$ Faculty of Animal and Biology Sciences, State Technical University of Quevedo, Av. Quito km 1.5 v\'ia a Santo Domingo, Quevedo 120503, Los R\'ios, Ecuador.
 
-$^{3}$ ITIS Software, Edificio de Investigaci\'on Ada Byron, University of M\'alaga, 29071 M\'alaga, Spain.
+$^{3}$ ITIS Software, Ada Byron Research Building, University of M\'alaga, M\'alaga 29071, Andalusia, Spain.
 
-$^{4}$ Department of Computer Languages and Computer Science, University of M\'alaga, 29071 M\'alaga, Spain.
+$^{4}$ Department of Computer Languages and Computer Science, University of M\'alaga, M\'alaga 29071, Andalusia, Spain.
 
 \subsection*{Corresponding author's email address and Twitter handle}
 * Corresponding author: Antonio J. Nebro, \href{mailto:ajnebro@uma.es}{ajnebro@uma.es}.
 
 \subsection*{Keywords}
-structural bioinformatics; membrane proteins; reproducible benchmarking; Predicted Aligned Error; FAIR principles; residue correspondence
+G protein-coupled receptors; AlphaFold2; structural bioinformatics; transmembrane proteins; benchmarking; reproducibility; multiple sequence alignment
 
 \subsection*{Abstract}
-This data article describes a curated benchmark resource for sequence- and structure-aware analysis of human G protein-coupled receptors (GPCRs). The collection contains 284 full-length human GPCR sequences organized into nine biologically defined classes or class-A subclasses, together with seven reduced 19-protein subsets (133 sequence instances) prepared for standardized structure-alignment workflows. Sequence records were retrieved programmatically from GPCRdb and are accompanied by transmembrane-topology annotations, GPCRdb reference alignments, and dataset-level metadata. Structure-associated data include AlphaFold Protein Structure Database models in PDB format, Predicted Aligned Error (PAE) matrices in JSON format, C$\alpha$ residue-distance matrices, residue-index maps, and PAE-derived confidence-weight matrices. The repository also stores precomputed multiple-sequence and multiple-structure alignment outputs, per-tool execution artifacts, consolidated baseline tables, and Python/shell scripts used for acquisition, transformation, metric preparation, and workflow execution. Data are organized by a consistent dataset naming scheme that links sequences, structures, derived matrices, reference alignments, and software outputs. The resource is intended for reproducible benchmarking of transmembrane-protein alignment methods, development of structure-aware scoring functions, independent reanalysis of GPCR residue correspondences, and construction of alternative benchmark protocols. The public GitHub repository and the exact source commit used for this article are reported in the Specifications Table.
+This data article describes a curated and versioned benchmark resource for sequence- and structure-aware analysis of human G protein-coupled receptors (GPCRs). The collection contains 284 full-length human GPCR sequences organized into nine biologically defined classes or class-A subclasses, together with seven deterministic 19-protein subsets comprising 133 sequence instances for standardized structure-alignment workflows. Sequence records obtained from GPCRdb are accompanied by transmembrane-topology annotations, GPCRdb reference alignments, and dataset-level metadata. Structure-associated resources include AlphaFold Protein Structure Database models in PDB format, Predicted Aligned Error (PAE) matrices in JSON format, C$\alpha$ residue-distance matrices, residue-index maps, and auxiliary PAE-derived confidence-weight matrices. The repository also stores precomputed multiple-sequence and multiple-structure alignment outputs, execution artifacts, baseline tables, and Python and shell scripts used for acquisition, transformation, metric preparation, and workflow execution. A consistent dataset naming scheme links sequences, structures, derived matrices, reference alignments, and software outputs. The resource supports reproducible benchmarking of transmembrane-protein alignment methods, independent reanalysis of GPCR residue correspondences, and development of alternative structure-aware scoring or benchmark protocols. The public repository and exact source commit defining the version described in this article are reported in the Specifications Table.
 
 \section*{SPECIFICATIONS TABLE}
 
@@ -81,10 +81,10 @@ This data article describes a curated benchmark resource for sequence- and struc
 \textbf{Data collection} & Human GPCR sequences were queried from the GPCRdb REST service using fixed family/subfamily identifiers. AlphaFold database model-v6 PDB files and PAE JSON files were retrieved using UniProt accessions. C$\alpha$ coordinates were parsed with Biopython to generate residue-distance matrices and index maps. PAE matrices were transformed into confidence weights. Reference alignments and tool outputs were stored by dataset and method. \\ \hline
 \textbf{Data source location} & Public biological data were acquired from GPCRdb and the AlphaFold Protein Structure Database. Dataset curation and derived-data generation were performed at the State Technical University of Quevedo, Quevedo, Ecuador, with methodological collaboration from the University of M\'alaga, M\'alaga, Spain. \\ \hline
 \textbf{Data accessibility} & Repository name: GitHub -- \texttt{Dataset\_Structural\_GPCRs}. \newline
-Data identification number: Git commit \texttt{3e339cae97116fa04f98769b7324c3443334bc97}. \newline
+Data identification number: Git commit \texttt{75287f1da907248aa29b8fb5adf17a4c63891797}. \newline
 Direct URL to data: \url{https://github.com/TM-M2StructAlign/Dataset_Structural_GPCRs}. \newline
 Instructions for accessing these data: the repository is public and can be browsed online, downloaded as an archive, or cloned with Git; no authentication is required. \\ \hline
-\textbf{Related research article} & J. Cede\~no-Mu\~noz, C. Zambrano-Vega, A.J. Nebro, ``Multiobjective Optimization Applied to the Structure-Based Sequence Alignment of Transmembrane Proteins with AlphaFold2-Guided Constraints,'' manuscript prepared for co-submission to \textit{Computational Biology and Chemistry} \cite{cedeno2026structalign}. \\ \hline
+\textbf{Related research article} & J. Cede\~no-Mu\~noz, C. Zambrano-Vega, A.J. Nebro, \textit{TM-M2StructAlign: A Multiobjective Tool for Structure-Guided Multiple Sequence Alignment of G Protein-Coupled Receptors Using AlphaFold2-Derived Constraints}, manuscript prepared for submission to \textit{Computational Biology and Chemistry} \cite{cedeno2026structalign}. \\ \hline
 \end{longtable}
 \setcounter{table}{0}
 
@@ -198,8 +198,9 @@ Table~\ref{tab:files} maps the current repository directories to their contents.
 	residue-index mappings (\path{*_idx.csv}), organized by dataset.\\
 	
 	\path{GPCRdb/weights/} &
-	PAE-derived confidence-weight matrices (\path{*_W.csv}) used by
-	structure-aware scoring workflows.\\
+	Auxiliary PAE-derived confidence-weight matrices (\path{*_W.csv}) retained
+	for reproducible confidence-aware analyses and alternative scoring workflows;
+	they are not consumed by the current TM-M2StructAlign structural objective.\\
 	
 	\path{GPCRdb/reference_alignments/} &
 	GPCRdb-derived reference multiple alignments in FASTA and MSF-compatible
@@ -237,7 +238,7 @@ Table~\ref{tab:files} maps the current repository directories to their contents.
 \end{xltabular}
 
 \subsection*{Structural and confidence-derived files}
-For each available structure, \texttt{*\_D.csv} stores a square residue-by-residue C$\alpha$ Euclidean distance matrix. The associated \texttt{*\_idx.csv} file maps each matrix row/column to the residue sequence number read from the PDB file. The distance-generation script clips values above 50~\AA{} to 50~\AA{} in the stored matrix. PAE JSON files contain AlphaFold predicted aligned error values, and \texttt{*\_W.csv} files store the corresponding exponentially transformed confidence weights described below.
+For each available structure, \texttt{*\_D.csv} stores a square residue-by-residue C$\alpha$ Euclidean distance matrix. The associated \texttt{*\_idx.csv} file maps each matrix row/column to the residue sequence number read from the PDB file. The distance-generation script clips values above 50~\AA{} to 50~\AA{} in the stored matrix. PAE JSON files contain AlphaFold predicted aligned error values, and \texttt{*\_W.csv} files store the corresponding exponentially transformed confidence weights described below. These weight matrices are released as auxiliary derived data for reuse and are distinct from the distance-based structural lDDT objective used by the current TM-M2StructAlign implementation.
 
 \subsection*{Reference and precomputed alignments}
 Reference alignments are retained in \texttt{GPCRdb/reference\_alignments/} and are named using the same dataset identifiers as the sequence files. The \texttt{GPCRdb/precomputed/} directory stores method-specific FASTA alignments and baseline tables. Archived outputs include sequence-based and structure-based methods, such as ClustalW, Kalign, MAFFT, MUSCLE5, T-Coffee, TM-Aligner, Caretta, FoldMason, mTM-align, MUSTANG and US-align, depending on dataset availability. The presence of an archived output does not imply that it was included in every comparison in the related research article. The \texttt{status} and \texttt{message} fields in baseline tables should be consulted when reusing automated outputs.
@@ -274,43 +275,46 @@ D_{ij}=\min\left(\lVert \mathbf{x}_i-\mathbf{x}_j \rVert_2, 50\,\text{\AA}\right
 
 Matrices are written as decimal CSV files (\texttt{*\_D.csv}). A companion integer file (\texttt{*\_idx.csv}) stores the PDB residue number for each matrix row/column, allowing matrix indices to be reconciled with residue numbering even when a coordinate file contains missing or excluded records.
 
-\subsection*{6. PAE-derived confidence weights}
-The script \texttt{scripts/generar.py} reads the PAE array from each AlphaFold JSON record and transforms it into a confidence-weight matrix using
+\subsection*{6. Auxiliary PAE-derived confidence weights}
+The script \texttt{scripts/generar.py} reads the PAE array from each AlphaFold JSON record and transforms it into an auxiliary confidence-weight matrix using
 
 \begin{equation}
 W_{ij}=\exp\left(-\frac{\mathrm{PAE}_{ij}}{\tau}\right), \qquad \tau=10.0.
 \end{equation}
 
-The generated matrices are stored as \texttt{*\_W.csv} in \texttt{GPCRdb/weights/}. The source PAE data are preserved separately, so users can recompute $W$ with a different $\tau$ or use the PAE values directly.
+The generated matrices are stored as \texttt{*\_W.csv} in \texttt{GPCRdb/weights/}. The source PAE data are preserved separately, so users can recompute $W$ with a different $\tau$ or use the PAE values directly. These matrices are provided as reusable auxiliary data; the current TM-M2StructAlign optimization does not load \texttt{*\_W.csv} and instead derives its internal structural lDDT objective from C$\alpha$ distance matrices.
 
 \subsection*{7. Reference alignments}
 GPCRdb alignment services were used to retain family-specific reference residue correspondences. Reduced references were generated by \texttt{scripts/downloadmsareferences\_19.py}, which requests \url{https://gpcrdb.org/services/alignment/protein/{protein_list}/} for the explicit list of receptors in each 19-protein subset. Returned aligned sequences are written in FASTA format. The repository also contains MSF-compatible versions used by scoring utilities. Reference files are named after the corresponding dataset, enabling direct pairing with predicted alignments.
 
 \subsection*{8. Precomputed alignment outputs and structural-alignment workflows}
-The dataset retains alignment files generated during benchmark preparation so that users need not rerun every third-party tool before inspecting or extending the benchmark. Per-dataset FASTA files are located in \texttt{GPCRdb/precomputed/}; a global \texttt{baselines.csv} stores the fields \texttt{dataset}, \texttt{method}, \texttt{objective\_1}, \texttt{objective\_2}, \texttt{fasta}, \texttt{status}, and \texttt{message}. These tabular values are provided as machine-readable experiment records rather than as conclusions of this data article.
+The dataset retains alignment files generated during benchmark preparation so that users need not rerun every third-party tool before inspecting or extending the benchmark. Per-dataset FASTA files are located in \texttt{GPCRdb/precomputed/}; a global \texttt{baselines.csv} stores the fields \texttt{dataset}, \texttt{method}, \texttt{objective\_1}, \texttt{objective\_2}, \texttt{fasta}, \texttt{status}, and \texttt{message}. The objective fields correspond to the two internal TM-M2StructAlign optimization criteria used to project conventional alignments into the same objective space; they are distinct from external evaluation endpoints such as GPCRdb-based SP/TC, TM-pair F1, TM-gap rate, and FoldMason MSTA-LDDT. These tabular values are provided as machine-readable experiment records rather than as conclusions of this data article.
 
 Structure-alignment outputs and logs are additionally grouped under \texttt{Tests/}. The repository provides dedicated workflows for Caretta \cite{akdel2020caretta}, MUSTANG \cite{konagurthu2006mustang}, mTM-align \cite{dong2018mtmalign}, FoldMason \cite{gilchrist2026foldmason}, and US-align \cite{zhang2022usalign}. Shell scripts in \texttt{scripts/} define the batch execution and data-preparation steps. FoldMason's use of local distance-difference information is related to the lDDT framework used broadly for superposition-free structural assessment \cite{mariani2013lddt}. Users should rely on the stored status/log information to identify successful, partial, or unavailable executions for a specific tool/dataset combination.
 
 \subsection*{9. Reproducibility and provenance}
-The acquisition and transformation pipeline is retained with the data. Key files include \texttt{downloadsequences.py}, \texttt{download.py}, \texttt{downloadmsareferences\_19.py}, \texttt{generar.py}, \texttt{distanceandindex.py}, conversion and metric-preparation scripts, and shell workflows for the structural aligners. The exact public repository state used to prepare this article is identified by commit \texttt{3e339cae97116fa04f98769b7324c3443334bc97}. This commit-level identifier allows future repository changes to be distinguished from the data snapshot described here. The repository README specifies CC BY 4.0 for the compiled/derived dataset while retaining the attribution and licensing conditions of the upstream data sources. The organization is intended to facilitate findability, accessibility, interoperability and reuse in line with FAIR data principles \cite{wilkinson2016fair}.
+The acquisition and transformation pipeline is retained with the data. Key files include \texttt{downloadsequences.py}, \texttt{download.py}, \texttt{downloadmsareferences\_19.py}, \texttt{generar.py}, \texttt{distanceandindex.py}, conversion and metric-preparation scripts, and shell workflows for the structural aligners. The exact public repository state described in this article is identified by commit \texttt{75287f1da907248aa29b8fb5adf17a4c63891797} in the \texttt{TM-M2StructAlign/Dataset\_Structural\_GPCRs} repository. The associated software is available at \url{https://github.com/TM-M2StructAlign/TM-M2StructAlign}, and the related manuscript sources are maintained at \url{https://github.com/JOELITO07/TM-M2StructAlign-Paper}. The commit-level identifier allows future repository changes to be distinguished from the data snapshot described here. The repository README specifies CC BY 4.0 for the compiled/derived dataset while retaining the attribution and licensing conditions of the upstream data sources. The organization is intended to facilitate findability, accessibility, interoperability and reuse in line with FAIR data principles \cite{wilkinson2016fair}.
 
 \section*{LIMITATIONS}
-The dataset is a targeted benchmark rather than a complete census of all human GPCRs: it contains 284 receptors from the nine selected groups/subclasses used in the associated alignment study. The seven reduced 19-protein datasets are deterministic subsets of the full groups and must not be treated as independent biological samples. Structural files depend on the AlphaFold database model version used during acquisition; future database releases may change coordinates or confidence values. Predicted structures, especially for very long receptors such as adhesion GPCRs, can contain regions of heterogeneous confidence, and PAE-derived weights inherit this uncertainty as well as the fixed $\tau=10$ transformation used here. Precomputed aligner outputs are heterogeneous because third-party methods differ in accepted input sizes, formats and failure modes; absent or failed executions should not be interpreted as numerical zeroes, and the stored status/log fields should be checked. The GitHub commit provides an exact version identifier but is not a repository DOI.
+The dataset is a targeted benchmark rather than a complete census of all human GPCRs: it contains 284 receptors from the nine selected groups/subclasses used in the associated alignment study. The seven reduced 19-protein datasets are deterministic subsets of the full groups and must not be treated as independent biological samples. Structural files depend on the AlphaFold database model version used during acquisition; future database releases may change coordinates or confidence values. Predicted structures, especially for very long receptors such as adhesion GPCRs, can contain regions of heterogeneous confidence. PAE-derived weights inherit this uncertainty and the fixed $\tau=10$ transformation used here; they are auxiliary reusable data and should not be interpreted as the weighting scheme of the current TM-M2StructAlign structural objective. Precomputed aligner outputs are heterogeneous because third-party methods differ in accepted input sizes, formats and failure modes; absent or failed executions should not be interpreted as numerical zeroes, and the stored status/log fields should be checked. The GitHub commit provides an exact version identifier but is not a repository DOI.
 
 \section*{ETHICS STATEMENT}
 The authors have read and follow the ethical requirements for publication in \textit{Data in Brief}. The current work does not involve human participants, human biological samples, animal experiments, or data collected from social media platforms. It uses publicly available protein sequence, annotation and predicted-structure records together with computationally derived data.
 
 \section*{CRediT AUTHOR STATEMENT}
-\textbf{Cristian Zambrano-Vega:} Conceptualization, Methodology, Software,  Supervision, Project administration, Validation, Writing -- review \& editing. \textbf{Joel Cede\~no-Mu\~noz:} Conceptualization, Validation, Formal analysis, Investigation, Data curation, Visualization, Writing -- original draft.  \textbf{Antonio J. Nebro:} Methodology, Supervision, Validation, Writing -- review \& editing.
-
-\section*{ACKNOWLEDGEMENTS}
-The authors acknowledge GPCRdb, UniProt-linked records, the AlphaFold Protein Structure Database, and the developers of the alignment software represented in the repository for making their scientific resources available to the community.
-
-This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors.
+\textbf{Cristian Zambrano-Vega:} Conceptualization, Methodology, Software, Supervision, Project administration, Validation, Writing -- review \& editing. \textbf{Joel Cede\~no-Mu\~noz:} Conceptualization, Validation, Formal analysis, Investigation, Data curation, Visualization, Writing -- original draft. \textbf{Antonio J. Nebro:} Methodology, Supervision, Validation, Writing -- review \& editing.
 
 \section*{DECLARATION OF COMPETING INTERESTS}
 The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
 
+\section*{DECLARATION OF GENERATIVE AI AND AI-ASSISTED TECHNOLOGIES IN THE MANUSCRIPT PREPARATION PROCESS}
+During the preparation of this work the authors used ChatGPT (OpenAI) to support manuscript organization, language editing, and consistency checking against the journal and project documentation. After using this tool, the authors reviewed and edited the content as needed and take full responsibility for the content of the published article.
+
+\section*{FUNDING}
+This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors.
+
+\section*{ACKNOWLEDGEMENTS}
+The authors acknowledge GPCRdb, UniProt-linked records, the AlphaFold Protein Structure Database, and the developers of the alignment software represented in the repository for making their scientific resources available to the community.
 
 \renewcommand{\refname}{REFERENCES}
 \bibliography{references-example}
