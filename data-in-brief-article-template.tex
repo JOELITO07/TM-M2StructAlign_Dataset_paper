@@ -106,7 +106,8 @@ Instructions for accessing these data: the repository is public and can be brows
 
     \item The raw AlphaFold PAE matrices, C$\alpha$ distance matrices, residue-index maps and PAE-derived weights can be reused independently of the alignment outputs. They support development or validation of alternative structure-aware objectives, confidence-aware scoring schemes, contact/distance analyses, and residue-correspondence metrics.
 
-    \item The repository includes reference alignments, precomputed outputs from multiple sequence- and structure-based aligners, execution artifacts, and workflow scripts. Researchers can compare a new method with archived baselines, recompute derived quantities, audit the data-preparation steps, or substitute updated structures and aligners while preserving the same benchmark organization.
+    \item The repository includes reference alignments, precomputed outputs from multiple sequence- and structure-based aligners, execution artifacts, and workflow scripts. 
+    Researchers can reuse the archived baseline outputs for independent benchmarking, recompute derived quantities, audit the data-preparation steps, or substitute updated structures and aligners while preserving the same benchmark organization.
 \end{itemize}
 
 \section*{BACKGROUND}
@@ -301,7 +302,9 @@ The dataset retains alignment files generated during benchmark preparation so th
 Structure-alignment outputs and logs are additionally grouped under \texttt{Tests/}. The repository provides dedicated workflows for Caretta \cite{akdel2020caretta}, MUSTANG \cite{konagurthu2006mustang}, mTM-align \cite{dong2018mtmalign}, FoldMason \cite{gilchrist2026foldmason}, and US-align \cite{zhang2022usalign}. Shell scripts in \texttt{scripts/} define the batch execution and data-preparation steps. FoldMason's use of local distance-difference information is related to the lDDT framework used broadly for superposition-free structural assessment \cite{mariani2013lddt}. Users should rely on the stored status/log information to identify successful, partial, or unavailable executions for a specific tool/dataset combination.
 
 \subsection*{9. Reproducibility and provenance}
-The acquisition and transformation pipeline is retained with the data. Key files include \texttt{downloadsequences.py}, \texttt{download.py}, \texttt{downloadmsareferences\_19.py}, \texttt{generar.py}, \texttt{distanceandindex.py}, conversion and metric-preparation scripts, and shell workflows for the structural aligners. The exact public repository state described in this article is identified in the \url{https://github.com/TM-M2StructAlign/Dataset\_Structural_GPCRs} repository an the associated software is available at \url{https://github.com/TM-M2StructAlign/TM-M2StructAlign}. The commit-level identifier allows future repository changes to be distinguished from the data snapshot described here. The repository README specifies CC BY 4.0 for the compiled/derived dataset while retaining the attribution and licensing conditions of the upstream data sources. The organization is intended to facilitate findability, accessibility, interoperability and reuse in line with FAIR data principles \cite{wilkinson2016fair}.
+The acquisition and transformation pipeline is retained with the data. Key files include \texttt{downloadsequences.py}, \texttt{download.py}, \texttt{downloadmsareferences\_19.py}, \texttt{generar.py}, \texttt{distanceandindex.py}, conversion and metric-preparation scripts, and shell workflows for the structural aligners. 
+
+The exact public repository state described in this article is in the \url{https://github.com/TM-M2StructAlign/Dataset\_Structural_GPCRs} repository. The associated software is publicly available at \url{https://github.com/TM-M2StructAlign/TM-M2StructAlign}. The commit-level identifier allows future repository changes to be distinguished from the data snapshot described here. The repository README specifies CC BY 4.0 for the compiled/derived dataset while retaining the attribution and licensing conditions of the upstream data sources. The organization is intended to facilitate findability, accessibility, interoperability and reuse in line with FAIR data principles \cite{wilkinson2016fair}.
 
 \section*{LIMITATIONS}
 The dataset is a targeted benchmark rather than a complete census of all human GPCRs: it contains 284 receptors from the nine selected groups/subclasses used in the associated alignment study. The seven reduced 19-protein datasets are deterministic subsets of the full groups and must not be treated as independent biological samples. Structural files depend on the AlphaFold database model version used during acquisition; future database releases may change coordinates or confidence values. Predicted structures, especially for very long receptors such as adhesion GPCRs, can contain regions of heterogeneous confidence. PAE-derived weights inherit this uncertainty and the fixed $\tau=10$ transformation used here; they are auxiliary reusable data and should not be interpreted as the weighting scheme of the current TM-M2StructAlign structural objective. Precomputed aligner outputs are heterogeneous because third-party methods differ in accepted input sizes, formats and failure modes; absent or failed executions should not be interpreted as numerical zeroes, and the stored status/log fields should be checked. The GitHub commit provides an exact version identifier but is not a repository DOI.
@@ -319,12 +322,13 @@ The authors declare that they have no known competing financial interests or per
 During the preparation of this work the authors used ChatGPT (OpenAI) to support manuscript organization, language editing, and consistency checking against the journal and project documentation. After using this tool, the authors reviewed and edited the content as needed and take full responsibility for the content of the published article.
 
 \section*{FUNDING}
-This work has been partially funded by grant PID2024-155363OB-C41 funded by MCIN/AEI/10.13039/501100011033 and by the European Union NextGenerationEU/PRTR, KOSMOS (Boosting Federated Data-Sharing Ecosystems with a Multidimensional Approach), and by grant DGP\_PIDI\_2024\_01174, Junta de Andalucia.
+This work has been partially supported by grant PID2024-155363OB-C41, funded by MCIN/AEI/10.13039/501100011033 and by the European Union NextGenerationEU/PRTR; KOSMOS (Boosting Federated Data-Sharing Ecosystems with a Multidimensional Approach); and grant
+DGP\_PIDI\_2024\_01174, Junta de Andalucia.
 
 \section*{ACKNOWLEDGEMENTS}
 The authors would like to express their gratitude to the State Technical University of Quevedo for the support provided throughout this research. Its continuous encouragement and institutional resources have been invaluable to the development of this study.
 
-Furthermore, GPCRdb, UniProt-linked records, the AlphaFold Protein Structure Database, and the developers of the alignment software represented in the repository for making their scientific resources available to the community.
+The authors also acknowledge GPCRdb, UniProt-linked records, the AlphaFold Protein Structure Database, and the developers of the alignment software represented in the repository for making their scientific resources available to the community.
 
 \renewcommand{\refname}{REFERENCES}
 \bibliography{references-example}
