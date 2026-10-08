@@ -88,10 +88,20 @@ This data article describes a curated and versioned benchmark resource for seque
 \textbf{Type of data} & Raw and curated protein-sequence data (FASTA); topology annotations (three-line text and GFF3); predicted protein structures (PDB); AlphaFold PAE data (JSON); processed residue-distance, residue-index and confidence-weight matrices (CSV); reference and precomputed alignments (FASTA/MSF); execution logs and result tables (CSV/TSV/text); Python and shell scripts. \\ \hline
 \textbf{Data collection} & Human GPCR sequences were queried from the GPCRdb REST service using fixed family/subfamily identifiers. AlphaFold database model-v6 PDB files and PAE JSON files were retrieved using UniProt accessions. C$\alpha$ coordinates were parsed with Biopython to generate residue-distance matrices and index maps. PAE matrices were transformed into confidence weights. Reference alignments and tool outputs were stored by dataset and method. \\ \hline
 \textbf{Data source location} & Public biological data were acquired from GPCRdb and the AlphaFold Protein Structure Database. Dataset curation and derived-data generation were performed at the State Technical University of Quevedo, Quevedo, Ecuador, with methodological collaboration from the University of M\'alaga, M\'alaga, Spain. \\ \hline
-\textbf{Data accessibility} & Repository name: GitHub -- \texttt{Dataset\_Structural\_GPCRs}. \newline
-Data identification number: Git commit \texttt{75287f1da907248aa29b8fb5adf17a4c63891797}. \newline
-Direct URL to data: \url{https://github.com/TM-M2StructAlign/Dataset_Structural_GPCRs}. \newline
-Instructions for accessing these data: the repository is public and can be browsed online, downloaded as an archive, or cloned with Git; no authentication is required. \\ \hline
+\textbf{Data accessibility} &
+Repository name: Zenodo. \newline
+Data identification number:
+\url{https://doi.org/10.5281/zenodo.23243974}. \newline
+Dataset version: 1.0.0. \newline
+Direct URL to data:
+\url{https://doi.org/10.5281/zenodo.23243974}. \newline
+GitHub source repository:
+\url{https://github.com/TM-M2StructAlign/Dataset_Structural_GPCRs}. \newline
+Source snapshot: Git commit
+\texttt{75287f1da907248aa29b8fb5adf17a4c63891797}. \newline
+The dataset described in this article is archived in Zenodo
+\cite{zambrano2026gpcrdataset}.
+\\ \hline
 \textbf{Related research article} & J. Cede\~no-Mu\~noz, C. Zambrano-Vega, A.J. Nebro, \textit{TM-M2StructAlign: A Multiobjective Tool for Structure-Guided Multiple Sequence Alignment of G Protein-Coupled Receptors Using AlphaFold2-Derived Constraints}, manuscript prepared for submission to \textit{Computational Biology and Chemistry} \cite{cedeno2026structalign}. \\ \hline
 \end{longtable}
 \setcounter{table}{0}
@@ -304,10 +314,13 @@ Structure-alignment outputs and logs are additionally grouped under \texttt{Test
 \subsection*{9. Reproducibility and provenance}
 The acquisition and transformation pipeline is retained with the data. Key files include \texttt{downloadsequences.py}, \texttt{download.py}, \texttt{downloadmsareferences\_19.py}, \texttt{generar.py}, \texttt{distanceandindex.py}, conversion and metric-preparation scripts, and shell workflows for the structural aligners. 
 
-The exact public repository state described in this article is in the \url{https://github.com/TM-M2StructAlign/Dataset\_Structural_GPCRs} repository. The associated software is publicly available at \url{https://github.com/TM-M2StructAlign/TM-M2StructAlign}. The commit-level identifier allows future repository changes to be distinguished from the data snapshot described here. The repository README specifies CC BY 4.0 for the compiled/derived dataset while retaining the attribution and licensing conditions of the upstream data sources. The organization is intended to facilitate findability, accessibility, interoperability and reuse in line with FAIR data principles \cite{wilkinson2016fair}.
+The exact dataset snapshot described in this article is archived in Zenodo as version 1.0.0~\cite{zambrano2026gpcrdataset}, and corresponds to Git commit \texttt{75287f1da907248aa29b8fb5adf17a4c63891797} of the public
+\texttt{TM-M2StructAlign/Dataset\_Structural\_GPCRs} repository.
+The repository README specifies CC BY 4.0 for the compiled/derived dataset while retaining the attribution and licensing conditions of the upstream data sources. The organization is intended to facilitate findability, accessibility, interoperability and reuse in line with FAIR data principles \cite{wilkinson2016fair}.
 
 \section*{LIMITATIONS}
-The dataset is a targeted benchmark rather than a complete census of all human GPCRs: it contains 284 receptors from the nine selected groups/subclasses used in the associated alignment study. The seven reduced 19-protein datasets are deterministic subsets of the full groups and must not be treated as independent biological samples. Structural files depend on the AlphaFold database model version used during acquisition; future database releases may change coordinates or confidence values. Predicted structures, especially for very long receptors such as adhesion GPCRs, can contain regions of heterogeneous confidence. PAE-derived weights inherit this uncertainty and the fixed $\tau=10$ transformation used here; they are auxiliary reusable data and should not be interpreted as the weighting scheme of the current TM-M2StructAlign structural objective. Precomputed aligner outputs are heterogeneous because third-party methods differ in accepted input sizes, formats and failure modes; absent or failed executions should not be interpreted as numerical zeroes, and the stored status/log fields should be checked. The GitHub commit provides an exact version identifier but is not a repository DOI.
+The dataset is a targeted benchmark rather than a complete census of all human GPCRs: it contains 284 receptors from the nine selected groups/subclasses used in the associated alignment study. The seven reduced 19-protein datasets are deterministic subsets of the full groups and must not be treated as independent biological samples. Structural files depend on the AlphaFold database model version used during acquisition; future database releases may change coordinates or confidence values. Predicted structures, especially for very long receptors such as adhesion GPCRs, can contain regions of heterogeneous confidence. PAE-derived weights inherit this uncertainty and the fixed $\tau=10$ transformation used here; they are auxiliary reusable data and should not be interpreted as the weighting scheme of the current TM-M2StructAlign structural objective. Precomputed aligner outputs are heterogeneous because third-party methods differ in accepted input sizes, formats and failure modes; absent or failed executions should not be interpreted as numerical zeroes, and the stored status/log fields should be checked. The GitHub commit provides a source-level provenance identifier, whereas the archived dataset version is persistently identified by
+the Zenodo DOI \url{https://doi.org/10.5281/zenodo.23243974}.
 
 \section*{ETHICS STATEMENT}
 The authors have read and follow the ethical requirements for publication in \textit{Data in Brief}. The current work does not involve human participants, human biological samples, animal experiments, or data collected from social media platforms. It uses publicly available protein sequence, annotation and predicted-structure records together with computationally derived data.
